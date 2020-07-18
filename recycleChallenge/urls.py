@@ -16,12 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+from django.conf.urls import url
 from app import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
-router.register(r'posts', views.PostViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'recycles', views.RecycleViewSet)
+router.register(r'recycleItems', views.RecycleItemViewSet)
+router.register(r'ratings', views.RatingViewSet)
+router.register(r'badReasons', views.BadReasonViewSet)
 
 urlpatterns = [
+    url(r'^svg/', views.StaticView.as_view()),
+    url(r'^assets/', views.StaticView.as_view()),
+    url(r'^$', views.HomePageView.as_view()),
+    url('/', views.HomePageView.as_view()),
+
+    url(r'^accounts/', include('allauth.urls')),
     path('api/', include(router.urls)),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
