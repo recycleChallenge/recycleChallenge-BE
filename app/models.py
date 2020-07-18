@@ -51,8 +51,8 @@ class RecycleItem(models.Model):
     )
 
     itemId = models.AutoField(primary_key=True)
-    recycleId = models.ForeignKey(Recycle, on_delete=models.DO_NOTHING, db_column='recycleId', default=0)
-    categories = models.SmallIntegerField(choices=CATEGORIES, default=1)
+    recycleId = models.ForeignKey(Recycle, on_delete=models.DO_NOTHING, db_column='recycleId', default=0, related_name='items')
+    category = models.SmallIntegerField(choices=CATEGORIES, default=1)
     count = models.IntegerField(default=0)
 
 

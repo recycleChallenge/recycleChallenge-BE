@@ -8,16 +8,26 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RecycleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Recycle
-        fields = '__all__'
-
-
 class RecycleItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecycleItem
         fields = '__all__'
+
+
+class RecycleSerializer(serializers.ModelSerializer):
+    items = RecycleItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Recycle
+        fields = '__all__'
+
+    # def create(self, validated_data):
+    #     items = validated_data.pop('items')
+    #     recycle = Recycle.objects.create(**validated_data)
+    #     print(recycle)
+    #     for item in items:
+    #         RecycleItem.objects.create(recycleId=recycle, **item)
+    #     return recycle
 
 
 class RatingSerializer(serializers.ModelSerializer):
