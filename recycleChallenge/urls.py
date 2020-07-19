@@ -32,11 +32,12 @@ urlpatterns = [
     url(r'^svg/', views.StaticView.as_view()),
     url(r'^assets/', views.StaticView.as_view()),
     url(r'^$', views.HomePageView.as_view()),
-    url('/', views.HomePageView.as_view()),
+    # url('/', views.HomePageView.as_view()),
 
     url(r'^accounts/', include('allauth.urls')),
     path('api/', include(router.urls)),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    url(r'^users', views.UserEditView.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

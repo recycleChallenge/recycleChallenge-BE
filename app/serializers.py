@@ -15,11 +15,15 @@ class RecycleItemSerializer(serializers.ModelSerializer):
 
 
 class RecycleSerializer(serializers.ModelSerializer):
+    # userId = UserSerializer(many=False, read_only=True)
     items = RecycleItemSerializer(many=True, read_only=True)
 
     class Meta:
         model = Recycle
         fields = '__all__'
+
+    # def to_representation(self, instance):
+    #     return instance
 
     # def create(self, validated_data):
     #     items = validated_data.pop('items')

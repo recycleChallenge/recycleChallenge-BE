@@ -64,6 +64,7 @@ class Rating(models.Model):
 
     ratingId = models.AutoField(primary_key=True)
     recycleId = models.ForeignKey(Recycle, on_delete=models.DO_NOTHING, db_column='recycleId', default=0)
+    userId = models.IntegerField(default=0)
     good = models.IntegerField(default=0)
     bad = models.IntegerField(default=0)
 
