@@ -40,15 +40,15 @@ class RecycleItem(models.Model):
         verbose_name_plural = '재활용 아이템 목록'
 
     CATEGORIES = (
-        (0, 'paper'),
-        (1, 'can'),
-        (2, 'metal'),
-        (3, 'bottle'),
-        (4, 'plastic'),
-        (5, 'styrofoam'),
-        (6, 'vinyl'),
-        (7, 'lamp'),
-        (8, 'battery')
+        (0, '종이류'),
+        (1, '캔류'),
+        (2, '금속류'),
+        (3, '병류'),
+        (4, '플라스틱류'),
+        (5, '스티로폼'),
+        (6, '비닐'),
+        (7, '폐형광등'),
+        (8, '폐건전지')
     )
 
     itemId = models.AutoField(primary_key=True)
