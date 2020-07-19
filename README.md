@@ -1,4 +1,7 @@
 # 리사이클 챌린지 백엔드 프로젝트
+## 프론트엔드 프로젝트 빌드
+https://github.com/recycleChallenge/recycleChallenge-FE/blob/master/README.md
+
 ## 가상환경 사용
 ```
 python3 -m venv myvenv
