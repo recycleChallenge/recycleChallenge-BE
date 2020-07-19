@@ -3,7 +3,7 @@ from .serializers import *
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 import json
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -21,11 +21,23 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_queryset(self):
-        userId = self.request.query_params.get('userId')
-        if userId == None:
+        mail = self.request.query_params.get('mail')
+        if mail == None:
             return User.objects.all()
         else:
-            return User.objects.filter(userId=userId)
+            return User.objects.filter(mail=mail)
+
+
+class LoginView(TemplateView):
+    serializer_class = UserSerializer
+
+    def post(self, request, **kwargs):
+        try:
+            body = json.loads(request.body)
+            user = User.objects.get(mail=body.get('mail'))
+            return HttpResponse(user.password == body.get("password"))
+        except Exception as ex:
+            return HttpResponse(False)
 
 
 class UserEditView(TemplateView):
@@ -42,6 +54,13 @@ class UserEditView(TemplateView):
 class RecycleViewSet(viewsets.ModelViewSet):
     queryset = Recycle.objects.all()
     serializer_class = RecycleSerializer
+
+    def get_queryset(self):
+        userId = self.request.query_params.get('userId')
+        if userId == None:
+            return Recycle.objects.all()
+        else:
+            return Recycle.objects.filter(userId=userId)
 
 
 class RecycleItemViewSet(viewsets.ModelViewSet):

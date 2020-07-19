@@ -25,11 +25,12 @@ class Recycle(models.Model):
         verbose_name_plural = '재활용 목록'
 
     recycleId = models.AutoField(primary_key=True)
-    userId = models.ForeignKey(User, on_delete=models.DO_NOTHING, db_column='userId', default=0)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE, db_column='userId', default=0)
     image = models.ImageField(upload_to="recycle")
     time = models.DateTimeField(default=datetime.now)
     lat = models.FloatField(default=0.0)
     lon = models.FloatField(default=0.0)
+    locale = models.CharField(max_length=200, default="")
 
 
 class RecycleItem(models.Model):
@@ -51,7 +52,7 @@ class RecycleItem(models.Model):
     )
 
     itemId = models.AutoField(primary_key=True)
-    recycleId = models.ForeignKey(Recycle, on_delete=models.DO_NOTHING, db_column='recycleId', default=0, related_name='items')
+    recycleId = models.ForeignKey(Recycle, on_delete=models.CASCADE, db_column='recycleId', default=0, related_name='items')
     category = models.SmallIntegerField(choices=CATEGORIES, default=1)
     count = models.IntegerField(default=0)
 
@@ -63,7 +64,7 @@ class Rating(models.Model):
         verbose_name_plural = '평가 목록'
 
     ratingId = models.AutoField(primary_key=True)
-    recycleId = models.ForeignKey(Recycle, on_delete=models.DO_NOTHING, db_column='recycleId', default=0)
+    recycleId = models.ForeignKey(Recycle, on_delete=models.CASCADE, db_column='recycleId', default=0)
     userId = models.IntegerField(default=0)
     good = models.IntegerField(default=0)
     bad = models.IntegerField(default=0)
@@ -76,5 +77,5 @@ class BadReason(models.Model):
         verbose_name_plural = '코멘트 목록'
 
     badReasonId = models.AutoField(primary_key=True)
-    ratingId = models.ForeignKey(Rating, on_delete=models.DO_NOTHING, db_column='ratingId', default=0)
+    ratingId = models.ForeignKey(Rating, on_delete=models.CASCADE, db_column='ratingId', default=0)
     reason = models.CharField(max_length=200)
