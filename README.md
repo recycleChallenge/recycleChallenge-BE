@@ -22,10 +22,10 @@ pip3 install -r requirements.txt
 ```
 ## 주요 환경버전
 ```
-angular: ~9.16
-ionic: ~5.0.7
-bootstrap: ^4.5.0
-rxjs: ~6.5.1
+Django: 3.0.8
+django-allauth: 0.42.0
+djangorestframework: 3.11.0
+python: 3.7.7
 ```
 
 ## 데모 링크
