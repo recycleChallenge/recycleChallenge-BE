@@ -20,10 +20,17 @@ pip3 install -r requirements.txt
 ```
 ./manage.py runserver
 ```
-
+## 주요 환경버전
+```
+angular: ~9.16
+ionic: ~5.0.7
+bootstrap: ^4.5.0
+rxjs: ~6.5.1
+```
 
 ## 데모 링크
-https://www.youtube.com/watch?v=ehBBESus0h8&feature=youtu.be
+https://www.youtube.com/watch?v=ehBBESus0h8&feature=youtu.be  
+
 ## 데모 화면
 ### 메인
 ![](/images/메인.png)
